@@ -7,62 +7,93 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const works = [
-    { title: "Hidegori Toys", description: "An e-commerce project am being part and working at right now :D Typescript, React, TailwindCSS...", images: ["/work10.jpg", "/work1b.jpg"] },
-    { title: "Sunny Notes", description: "Diary and private notes app I've made with kotlin for android.", images: ["/work2.jpg", "/work2b.jpg"] },
-    { title: "Hero Sheet", description: "Role cards simulator/ game I've done as a project", images: ["/work3.jpg", "/work3b.jpg"] },
-    { title: "Generative AI Platform for Creatives", description: "ExpNext.js application for providing creatives the ability to enhance their work with Generative AI workflows.", images: ["/work4.jpg", "/work4b.jpg"] },
+    {
+      title: "Hidegori Toys",
+      description: "An e-commerce project using TypeScript, React and TailwindCSS.",
+      images: ["/work11.jpg", "/work1bb.jpg"],
+    },
+    {
+      title: "Sunny Notes",
+      description: "Android diary app built with Kotlin.",
+      images: ["/work222112.jpg", "/work2bb.jpg"],
+    },
+    {
+      title: "Hero Sheet",
+      description: "Role cards simulator / game project.",
+      images: ["/work33.jpg", "/work3bb.jpg"],
+    },
+    {
+      title: "Generative AI Platform for Creatives",
+      description:
+        "Next.js web platform providing creative workflows enhanced by AI.",
+      images: ["/work44.jpg", "/work4bb.jpg"],
+    },
   ];
 
-  const education = [
-    { img: "/edu1.jpg", text: "Systems Analyst • Instituto Superior de Informatica Virasoro" },
-    { img: "/edu2.jpg", text: "Certificado • React / Next.js" },
-    { img: "/edu3.jpg", text: "Certificado • UX Research" },
-  ];
+  // individual index for each work
+  const [indices, setIndices] = useState(Array(works.length).fill(0));
 
-  const [imageIndex, setImageIndex] = useState(0);
+  const changeImage = (workIndex, direction) => {
+    setIndices((prev) => {
+      const updated = [...prev];
+      const imgCount = works[workIndex].images.length;
+
+      updated[workIndex] =
+        direction === "next"
+          ? (updated[workIndex] + 1) % imgCount
+          : updated[workIndex] === 0
+          ? imgCount - 1
+          : updated[workIndex] - 1;
+
+      return updated;
+    });
+  };
 
   return (
     <div className="relative min-h-screen w-full">
 
       {/* BACKGROUND */}
       <div
-        className="fixed inset-0 bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 bg-cover bg-center -z-20"
         style={{ backgroundImage: "url('/background.jpg')" }}
-      ></div>
+      />
 
-      {/* OVERLAY */}
-      <div className="fixed inset-0 bg-white/35 dark:bg-black/45 backdrop-blur-sm"></div>
+      {/* GLASS OVERLAY */}
+      <div className="fixed inset-0 bg-white/25 dark:bg-black/45 backdrop-blur-sm -z-10" />
 
       {/* HEADER */}
-      <header className="fixed top-0 left-0 w-full h-[60px] flex items-center justify-between px-10 backdrop-blur-lg bg-white/10 dark:bg-black/20 border-b border-neutral-300 dark:border-neutral-700 z-50">
-        
+      <header className="fixed top-0 left-0 w-full h-[60px] flex items-center justify-between px-10 backdrop-blur-xl bg-white/10 dark:bg-black/20 border-b border-neutral-300 dark:border-neutral-700 z-50">
         <nav className="flex gap-8 text-sm tracking-wide uppercase">
-          <Link to="about" smooth duration={600} className="cursor-pointer hover:opacity-50 transition">About</Link>
-          <Link to="works" smooth duration={600} className="cursor-pointer hover:opacity-50 transition">Works</Link>
-          <Link to="education" smooth duration={600} className="cursor-pointer hover:opacity-50 transition">Education</Link>
-          <Link to="contact" smooth duration={600} className="cursor-pointer hover:opacity-50 transition">Contact</Link>
+          <Link to="about" smooth duration={500} className="cursor-pointer hover:opacity-60 transition">
+            About
+          </Link>
+          <Link to="works" smooth duration={500} className="cursor-pointer hover:opacity-60 transition">
+            Works
+          </Link>
+          <Link to="contact" smooth duration={500} className="cursor-pointer hover:opacity-60 transition">
+            Contact
+          </Link>
         </nav>
 
-        {/* FIXED LOGO */}
         <Image
-          src="/logo5.png"
+          src="/logo5533.png"
           width={40}
           height={40}
           priority
-          alt="logo5"
+          alt="logo553"
           className="cursor-pointer opacity-80 hover:opacity-50 transition"
         />
       </header>
 
       {/* CONTENT */}
-      <main className="relative z-10 px-6 sm:px-24 pt-[120px] pb-32 space-y-[160px] text-black dark:text-white overflow-hidden">
+      <main className="relative z-10 px-6 sm:px-24 pt-[120px] pb-32 space-y-[160px] text-black dark:text-white">
 
         {/* ABOUT */}
         <motion.section
           id="about"
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
           className="min-h-[60vh] flex items-center justify-center sm:justify-start"
         >
@@ -74,90 +105,52 @@ export default function Home() {
         </motion.section>
 
         {/* WORKS */}
-        <motion.section
-          id="works"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="space-y-16"
-        >
+        <section id="works" className="space-y-16">
           {works.map((work, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.97 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
               viewport={{ once: true }}
-              className="relative group rounded-xl overflow-hidden border border-neutral-300 dark:border-neutral-700 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="relative group rounded-xl overflow-hidden border border-neutral-300 dark:border-neutral-700 shadow-lg hover:shadow-xl transition-all duration-300 will-change-transform"
             >
               <Image
-                src={work.images[imageIndex]}
+                src={work.images[indices[i]]}
                 width={1300}
                 height={700}
                 alt={work.title}
-                className="object-cover w-full h-[380px] md:h-[430px] group-hover:brightness-[55%] transition duration-500"
+                className="object-cover w-full h-[240px] md:h-[430px] transition-transform duration-500 group-hover:scale-[1.02]"
               />
 
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center text-white transition duration-500">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center text-white transition duration-500 bg-black/30 backdrop-blur-sm">
                 <h2 className="text-3xl font-semibold">{work.title}</h2>
                 <p className="text-sm max-w-md mt-4 text-center">{work.description}</p>
               </div>
 
+              {/* Buttons now only affect single card */}
               <button
-                className="absolute left-6 top-1/2 -translate-y-1/2 text-white text-4xl opacity-40 hover:opacity-100 transition"
-                onClick={() => setImageIndex(prev => prev === 0 ? work.images.length - 1 : prev - 1)}
+                className="absolute left-6 top-1/2 -translate-y-1/2 text-white text-4xl opacity-50 hover:opacity-100 transition"
+                onClick={() => changeImage(i, "prev")}
               >
                 ‹
               </button>
               <button
-                className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-4xl opacity-40 hover:opacity-100 transition"
-                onClick={() => setImageIndex(prev => (prev + 1) % work.images.length)}
+                className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-4xl opacity-50 hover:opacity-100 transition"
+                onClick={() => changeImage(i, "next")}
               >
                 ›
               </button>
             </motion.div>
           ))}
-        </motion.section>
-
-        {/* EDUCATION */}
-        <motion.section
-          id="education"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="space-y-12"
-        >
-          {education.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.97 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              viewport={{ once: true }}
-              className="relative group rounded-xl overflow-hidden border border-neutral-300 dark:border-neutral-700 shadow-sm hover:shadow-lg transition-all"
-            >
-              <Image
-                src={item.img}
-                width={1300}
-                height={700}
-                alt="Education"
-                className="object-cover w-full h-[240px] group-hover:brightness-[55%] transition duration-500"
-              />
-              <p className="absolute inset-0 flex items-center justify-center text-white text-lg opacity-0 group-hover:opacity-100 transition duration-500">
-                {item.text}
-              </p>
-            </motion.div>
-          ))}
-        </motion.section>
+        </section>
 
         {/* CONTACT */}
         <motion.section
           id="contact"
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
           className="flex flex-col items-center justify-center py-20"
         >

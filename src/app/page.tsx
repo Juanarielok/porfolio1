@@ -35,6 +35,7 @@ export default function Home() {
 
       {/* HEADER */}
       <header className="fixed top-0 left-0 w-full h-[60px] flex items-center justify-between px-10 backdrop-blur-lg bg-white/10 dark:bg-black/20 border-b border-neutral-300 dark:border-neutral-700 z-50">
+        
         <nav className="flex gap-8 text-sm tracking-wide uppercase">
           <Link to="about" smooth duration={600} className="cursor-pointer hover:opacity-50 transition">About</Link>
           <Link to="works" smooth duration={600} className="cursor-pointer hover:opacity-50 transition">Works</Link>
@@ -42,7 +43,15 @@ export default function Home() {
           <Link to="contact" smooth duration={600} className="cursor-pointer hover:opacity-50 transition">Contact</Link>
         </nav>
 
-        <Image src="/logo.png" width={30} height={30} alt="logo" className="cursor-pointer opacity-80 hover:opacity-50 transition" />
+        {/* FIXED LOGO */}
+        <Image
+          src="/logo.png"
+          width={40}
+          height={40}
+          priority
+          alt="logo"
+          className="cursor-pointer opacity-80 hover:opacity-50 transition"
+        />
       </header>
 
       {/* CONTENT */}
@@ -58,9 +67,9 @@ export default function Home() {
           className="min-h-[60vh] flex items-center justify-center sm:justify-start"
         >
           <p className="max-w-2xl text-[18px] leading-relaxed opacity-90 text-center sm:text-left">
-          I’m Juan Ariel — a designer and developer with a minimalist mindset.
-I’m interested in the intersection of aesthetics, technology, and purpose.
-I create quiet, intentional, and functional interfaces.
+            I’m Juan Ariel — a designer and developer with a minimalist mindset.
+            I’m interested in the intersection of aesthetics, technology, and purpose.
+            I create quiet, intentional, and functional interfaces.
           </p>
         </motion.section>
 
@@ -90,13 +99,11 @@ I create quiet, intentional, and functional interfaces.
                 className="object-cover w-full h-[380px] md:h-[430px] group-hover:brightness-[55%] transition duration-500"
               />
 
-              {/* Hover overlay */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center text-white transition duration-500">
                 <h2 className="text-3xl font-semibold">{work.title}</h2>
                 <p className="text-sm max-w-md mt-4 text-center">{work.description}</p>
               </div>
 
-              {/* Controls */}
               <button
                 className="absolute left-6 top-1/2 -translate-y-1/2 text-white text-4xl opacity-40 hover:opacity-100 transition"
                 onClick={() => setImageIndex(prev => prev === 0 ? work.images.length - 1 : prev - 1)}
@@ -162,6 +169,7 @@ I create quiet, intentional, and functional interfaces.
             juaniprograma@gmail.com
           </a>
         </motion.section>
+
       </main>
     </div>
   );

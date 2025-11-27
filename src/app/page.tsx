@@ -42,7 +42,7 @@ export default function Home() {
           <Link to="contact" smooth duration={600} className="cursor-pointer hover:opacity-50 transition">Contact</Link>
         </nav>
 
-        <Image src="/logo.png" width={30} height={30} alt="Logo" className="cursor-pointer opacity-80 hover:opacity-50 transition" />
+        <Image src="/logo.png" width={30} height={30} alt="logo" className="cursor-pointer opacity-80 hover:opacity-50 transition" />
       </header>
 
       {/* CONTENT */}
